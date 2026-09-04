@@ -4,32 +4,30 @@ import { LoginClient } from './LoginClient'
 
 export default function LoginPage() {
   return (
-    <div className="min-h-screen bg-bg-base flex items-center justify-center p-4">
+    <div className="flex min-h-screen items-center justify-center bg-omni-bg p-4">
       <div className="w-full max-w-md">
-        <div className="text-center mb-8">
-          <div className="inline-flex items-center gap-2 mb-4">
-            <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/icon.png" alt="" className="w-6 h-6 rounded" />
-            </div>
-            <span className="text-xl font-bold text-text-primary">OMNI Share</span>
+        <div className="mb-6 flex items-center gap-2">
+          <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-sm bg-accent">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/icon.png" alt="" className="h-5 w-5 rounded-sm" />
           </div>
-          <h1 className="text-2xl font-semibold text-text-primary">Welcome back</h1>
-          <p className="text-text-secondary mt-1">Sign in to your account to continue</p>
+          <span className="font-mono text-caption uppercase tracking-wide text-omni-ink-faint">OMNI Share</span>
         </div>
+        <h1 className="font-display text-h1-lg font-semibold text-omni-ink">Welcome back</h1>
+        <p className="mt-2 text-body text-omni-ink-soft">Sign in to your account to continue</p>
 
-        <div className="card p-6">
+        <div className="mt-6 rounded-md border border-omni-border bg-omni-surface p-6">
           <Suspense fallback={null}>
             <LoginClient />
           </Suspense>
         </div>
 
-        <p className="hidden text-center text-text-tertiary text-sm mt-6">
+        <p className="hidden mt-6 text-center text-small text-omni-ink-faint">
           Don&apos;t have an account?{' '}
-          <Link href="/register" className="text-text-primary font-medium hover:underline">Create one</Link>
+          <Link href="/register" className="font-medium text-omni-ink hover:underline">Create one</Link>
         </p>
-        <p className="text-center text-text-tertiary text-sm mt-2">OMNI Share — Real-time photo sharing platform</p>
-        <p className="text-center text-xs text-text-tertiary mt-2">
+        <p className="mt-2 text-center text-small text-omni-ink-faint">OMNI Share — Real-time photo sharing platform</p>
+        <p className="mt-2 text-center text-caption text-omni-ink-faint">
           <Link href="/privacy" className="hover:underline">Privacy Policy &amp; Terms of Use</Link>
         </p>
       </div>

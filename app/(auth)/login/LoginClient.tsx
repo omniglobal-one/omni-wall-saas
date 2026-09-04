@@ -1,6 +1,8 @@
 'use client'
 import { useState } from 'react'
+import type { FormEvent } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
+import { Button, Input, Alert } from '@omni/ui'
 import { signIn } from '@/app/actions/auth'
 
 export function LoginClient() {
@@ -14,7 +16,7 @@ export function LoginClient() {
   const [error, setError] = useState<string | null>(null)
   const [loading, setLoading] = useState(false)
 
-  async function handleLogin(e: React.FormEvent) {
+  async function handleLogin(e: FormEvent) {
     e.preventDefault()
     setError(null)
     setLoading(true)
@@ -29,44 +31,36 @@ export function LoginClient() {
   }
 
   return (
-    <form onSubmit={handleLogin} className="space-y-4">
-      <div>
-        <label htmlFor="email" className="label">Email address</label>
-        <input
-          id="email"
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          className="input"
-          placeholder="you@example.com"
-          required
-          autoComplete="email"
-        />
-      </div>
-      <div>
-        <label htmlFor="password" className="label">Password</label>
-        <input
-          id="password"
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          className="input"
-          placeholder="••••••••"
-          required
-          autoComplete="current-password"
-        />
-      </div>
-      {error !== null && (
-        <div className="bg-danger/10 border border-danger/30 rounded-lg p-3 text-danger text-sm">{error}</div>
-      )}
-      <button type="submit" disabled={loading} className="btn-primary w-full justify-center flex items-center gap-2">
+    <form onSubmit={handleLogin} className="flex flex-col gap-4">
+      <Input
+        label="Email address"
+        type="email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        placeholder="you@example.com"
+        required
+        autoComplete="email"
+      />
+      <Input
+        label="Password"
+        type="password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        placeholder="••••••••"
+        required
+        autoComplete="current-password"
+      />
+      {error !== null && <Alert tone="error">{error}</Alert>}
+      <Button type="submit" disabled={loading} className="w-full justify-center">
         {loading ? (
           <>
-            <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+            <div className="h-4 w-4 animate-spin rounded-full border-2 border-accent-contrast/30 border-t-accent-contrast" />
             Signing in…
           </>
-        ) : 'Sign in'}
-      </button>
+        ) : (
+          'Sign in'
+        )}
+      </Button>
     </form>
   )
 }

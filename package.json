@@ -12,6 +12,8 @@
     "test:integration": "node scripts/run-integration-tests.mjs"
   },
   "dependencies": {
+    "@omni/tokens": "github:omniglobal-one/omni-tokens#v1.0.1",
+    "@omni/ui": "github:omniglobal-one/omni-ui#v1.0.7",
     "@supabase/ssr": "^0.5.2",
     "@supabase/supabase-js": "^2.49.4",
     "@types/qrcode": "^1.5.6",

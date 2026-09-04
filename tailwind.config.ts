@@ -1,15 +1,20 @@
 import type { Config } from 'tailwindcss'
 const config: Config = {
+  presets: [require('@omni/tokens/tailwind-preset')],
   content: ['./pages/**/*.{js,ts,jsx,tsx,mdx}','./components/**/*.{js,ts,jsx,tsx,mdx}','./app/**/*.{js,ts,jsx,tsx,mdx}'],
   darkMode: 'class',
   theme: {
     extend: {
       colors: {
-        primary: '#0E7490',
-        'primary-hover': '#155E75',
+        // "success" dropped here — the preset now owns that key as a nested
+        // {DEFAULT, soft} semantic token; a plain string would have clobbered it.
+        // primary/primary-hover updated to the Step 1 confusability-nudged
+        // accent (#0E7490 -> #0C6B9E) so unmigrated pages stay visually
+        // consistent with the new login screen's accent tokens.
+        primary: '#0C6B9E',
+        'primary-hover': '#0A5882',
         secondary: '#F59E0B',
         danger: '#DC2626',
-        success: '#16A34A',
         bg: { base: '#F9FAFB', card: '#FFFFFF', border: '#E5E7EB' },
         text: { primary: '#111827', secondary: '#6B7280', tertiary: '#9CA3AF' },
         dark: {
@@ -17,15 +22,11 @@ const config: Config = {
           text: { primary: '#F9FAFB', secondary: '#9CA3AF', tertiary: '#6B7280' },
         },
       },
-      fontFamily: {
-        sans: ['var(--font-sans)', 'system-ui', 'sans-serif'],
-        mono: ['var(--font-mono)', 'monospace'],
-      },
-      borderRadius: { DEFAULT: '8px', lg: '8px', xl: '8px' },
+      // fontFamily and borderRadius dropped — the preset owns both scales now.
       borderColor: { DEFAULT: '#E5E7EB' },
       boxShadow: {
         card: '0 1px 2px rgba(0,0,0,0.05)',
-        glow: '0 0 24px rgba(14, 116, 144, 0.35)',
+        glow: '0 0 24px rgba(12, 107, 158, 0.35)',
       },
     },
   },
