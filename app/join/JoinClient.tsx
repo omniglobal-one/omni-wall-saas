@@ -1,6 +1,7 @@
 'use client'
 import React, { useState, useEffect, useRef } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
+import { Alert, Button, Input } from '@omni/ui'
 import { joinRoom, guestJoinRoom } from '@/app/actions/members'
 
 export function JoinClient({ initialAuthed }: { initialAuthed: boolean }) {
@@ -69,34 +70,30 @@ export function JoinClient({ initialAuthed }: { initialAuthed: boolean }) {
   }
 
   return (
-    <div className="min-h-screen bg-bg-base flex items-center justify-center px-4">
+    <div className="min-h-screen bg-omni-bg flex items-center justify-center px-4">
       <div className="w-full max-w-md text-center">
         <div className="inline-flex items-center gap-2 mb-10 justify-center">
-          <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
+          <div className="w-8 h-8 bg-accent rounded-lg flex items-center justify-center">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/icon.png" alt="" className="w-6 h-6 rounded" />
           </div>
-          <span className="text-xl font-bold text-text-primary">OMNI Share</span>
+          <span className="text-xl font-bold text-omni-ink">OMNI Share</span>
         </div>
 
-        <h1 className="text-3xl font-bold text-text-primary mb-2">Join a room</h1>
-        <p className="text-text-secondary mb-8">
+        <h1 className="text-3xl font-bold text-omni-ink mb-2">Join a room</h1>
+        <p className="text-omni-ink-soft mb-8">
           Enter the 6-character code shown at the event.
         </p>
 
         <div className="card p-8 text-left">
-          {error && (
-            <div className="bg-danger/10 border border-danger/20 text-danger rounded-lg px-4 py-3 text-sm mb-6">
-              {error}
-            </div>
-          )}
+          {error !== null && <Alert tone="error" className="mb-6">{error}</Alert>}
 
           <div className="mb-4">
-            <label className="label text-center block">Room code</label>
-            <input
+            <Input
               ref={inputRef}
+              label="Room code"
               type="text"
-              className="input text-center font-mono text-3xl tracking-[0.5em] uppercase py-4"
+              className="text-center font-mono text-3xl tracking-[0.5em] uppercase py-4"
               value={code}
               onChange={e => {
                 const val = e.target.value.toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 6)
@@ -115,45 +112,44 @@ export function JoinClient({ initialAuthed }: { initialAuthed: boolean }) {
           {authed === false && (
             <div className="mb-6 space-y-4">
               <div>
-                <label className="label">Your name <span className="text-text-tertiary font-normal">(optional)</span></label>
-                <input
+                <Input
+                  label="Your name (optional)"
                   type="text"
-                  className="input"
                   placeholder="e.g. Alice"
                   value={displayName}
                   onChange={e => setDisplayName(e.target.value)}
                   maxLength={50}
                 />
-                <p className="text-xs text-text-tertiary mt-1.5">
+                <p className="text-xs text-omni-ink-faint mt-1.5">
                   Helps the moderator identify your photos. You can skip this.
                 </p>
               </div>
               <label className="flex items-start gap-3 cursor-pointer">
                 <input
                   type="checkbox"
-                  className="mt-0.5 h-4 w-4 shrink-0 rounded border-bg-border text-primary focus:ring-primary"
+                  className="mt-0.5 h-4 w-4 shrink-0 rounded border-omni-border text-accent focus:ring-accent"
                   checked={ageConfirmed}
                   onChange={e => setAgeConfirmed(e.target.checked)}
                 />
-                <span className="text-sm text-text-secondary">
+                <span className="text-sm text-omni-ink-soft">
                   I confirm I am 13 years of age or older.
                 </span>
               </label>
             </div>
           )}
 
-          <button
+          <Button
             onClick={() => handleJoin()}
-            className="btn-primary w-full justify-center text-base py-3"
+            className="w-full justify-center text-base py-3"
             disabled={loading || code.length !== 6}
           >
             {loading ? (
               <>
-                <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                <div className="w-4 h-4 border-2 border-accent-contrast/30 border-t-accent-contrast rounded-full animate-spin" />
                 Joining...
               </>
             ) : 'Join Room'}
-          </button>
+          </Button>
         </div>
 
       </div>

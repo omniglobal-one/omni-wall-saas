@@ -7,11 +7,11 @@ export default function LandingPage() {
       {/* Navbar */}
       <header className="relative z-10 px-6 py-5 flex items-center justify-center max-w-6xl mx-auto w-full">
         <div className="flex items-center gap-2.5">
-          <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center shadow-sm">
+          <div className="w-8 h-8 bg-accent rounded-lg flex items-center justify-center shadow-sm">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/icon.png" alt="" className="w-6 h-6 rounded" />
           </div>
-          <span className="text-lg font-bold text-text-primary">OMNI Share</span>
+          <span className="text-lg font-bold text-omni-ink">OMNI Share</span>
         </div>
       </header>
 
@@ -19,31 +19,31 @@ export default function LandingPage() {
       <section className="relative flex flex-col items-center justify-center text-center px-6 pt-16 pb-32">
         {/* Background gradient blobs */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute -top-40 -left-40 w-[600px] h-[600px] bg-primary/10 rounded-full blur-3xl" />
+          <div className="absolute -top-40 -left-40 w-[600px] h-[600px] bg-accent/10 rounded-full blur-3xl" />
           <div className="absolute -top-20 -right-40 w-[500px] h-[500px] bg-blue-200/40 rounded-full blur-3xl" />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-primary/5 rounded-full blur-3xl" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-accent/5 rounded-full blur-3xl" />
         </div>
 
         <div className="relative max-w-3xl mx-auto">
           {/* Live badge */}
-          <div className="inline-flex items-center gap-2 bg-white border border-bg-border shadow-sm text-text-secondary px-4 py-1.5 rounded-full text-xs font-medium mb-8">
+          <div className="inline-flex items-center gap-2 bg-white border border-omni-border shadow-sm text-omni-ink-soft px-4 py-1.5 rounded-full text-xs font-medium mb-8">
             <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
             Real-time • No account needed • Free to join
           </div>
 
           {/* Headline */}
-          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-text-primary leading-[1.05] tracking-tight mb-10">
+          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-omni-ink leading-[1.05] tracking-tight mb-10">
             Your event,
             <br />
             <span className="relative inline-block">
-              <span className="relative z-10 text-primary">on the wall.</span>
+              <span className="relative z-10 text-accent">on the wall.</span>
               <svg className="absolute -bottom-4 left-0 w-full" viewBox="0 0 300 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M2 8.5C60 3 120 2 150 2C180 2 240 3 298 8.5" stroke="#2563EB" strokeWidth="4" strokeLinecap="round" opacity="0.3"/>
               </svg>
             </span>
           </h1>
 
-          <p className="text-xl text-text-secondary leading-relaxed mb-10 max-w-xl mx-auto">
+          <p className="text-xl text-omni-ink-soft leading-relaxed mb-10 max-w-xl mx-auto">
             Guests upload photos, you approve them, everyone sees them live on a big screen. Perfect for weddings, conferences, and every moment worth sharing.
           </p>
 
@@ -51,28 +51,28 @@ export default function LandingPage() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
             <Link
               href="/join"
-              className="inline-flex items-center gap-2 bg-primary hover:bg-primary-hover text-white font-semibold text-base px-8 py-3.5 rounded-xl transition-colors shadow-lg shadow-primary/25"
+              className="inline-flex items-center gap-2 bg-accent hover:bg-accent-hover text-white font-semibold text-base px-8 py-3.5 rounded-xl transition-colors shadow-lg shadow-primary/25"
             >
               <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
               </svg>
               Join with a code
             </Link>
-            <p className="text-text-tertiary text-sm">Enter the 6-letter code from your host</p>
+            <p className="text-omni-ink-faint text-sm">Enter the 6-letter code from your host</p>
           </div>
         </div>
 
         {/* Mock wall preview */}
         <div className="relative mt-20 max-w-4xl w-full mx-auto">
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white z-10 pointer-events-none" style={{top: '60%'}} />
-          <div className="bg-white border border-bg-border rounded-2xl shadow-2xl shadow-gray-200 overflow-hidden">
+          <div className="bg-white border border-omni-border rounded-2xl shadow-2xl shadow-gray-200 overflow-hidden">
             {/* Browser chrome */}
-            <div className="flex items-center gap-1.5 px-4 py-3 border-b border-bg-border bg-bg-base">
+            <div className="flex items-center gap-1.5 px-4 py-3 border-b border-omni-border bg-omni-bg">
               <div className="w-3 h-3 rounded-full bg-red-300" />
               <div className="w-3 h-3 rounded-full bg-yellow-300" />
               <div className="w-3 h-3 rounded-full bg-green-300" />
-              <div className="flex-1 mx-4 bg-bg-border rounded-md h-5 flex items-center px-3">
-                <span className="text-text-tertiary text-xs font-mono">wall.omnidesk.one/room/tech-summit/wall</span>
+              <div className="flex-1 mx-4 bg-omni-border rounded-md h-5 flex items-center px-3">
+                <span className="text-omni-ink-faint text-xs font-mono">wall.omnidesk.one/room/tech-summit/wall</span>
               </div>
             </div>
             {/* Fake photo wall */}
@@ -110,12 +110,12 @@ export default function LandingPage() {
       {/* How it works */}
       <section className="px-6 py-24 max-w-5xl mx-auto w-full">
         <div className="text-center mb-14">
-          <p className="text-primary font-semibold text-sm uppercase tracking-widest mb-3">How it works</p>
-          <h2 className="text-4xl font-bold text-text-primary">Three steps, zero friction</h2>
+          <p className="text-accent font-semibold text-sm uppercase tracking-widest mb-3">How it works</p>
+          <h2 className="text-4xl font-bold text-omni-ink">Three steps, zero friction</h2>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
           {/* connector line */}
-          <div className="hidden md:block absolute top-7 left-1/3 right-1/3 h-px bg-bg-border" />
+          <div className="hidden md:block absolute top-7 left-1/3 right-1/3 h-px bg-omni-border" />
           {[
             {
               step: '01',
@@ -138,13 +138,13 @@ export default function LandingPage() {
           ].map((s, i) => (
             <div key={i} className="flex flex-col items-center text-center">
               <div className="relative mb-6">
-                <div className="w-14 h-14 bg-primary rounded-2xl flex items-center justify-center shadow-lg shadow-primary/20">
+                <div className="w-14 h-14 bg-accent rounded-2xl flex items-center justify-center shadow-lg shadow-primary/20">
                   <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">{s.icon}</svg>
                 </div>
-                <span className="absolute -top-2 -right-2 w-5 h-5 bg-white border border-bg-border rounded-full text-[10px] font-bold text-text-tertiary flex items-center justify-center">{i + 1}</span>
+                <span className="absolute -top-2 -right-2 w-5 h-5 bg-white border border-omni-border rounded-full text-[10px] font-bold text-omni-ink-faint flex items-center justify-center">{i + 1}</span>
               </div>
-              <h3 className="font-bold text-text-primary text-lg mb-2">{s.title}</h3>
-              <p className="text-text-secondary text-sm leading-relaxed">{s.body}</p>
+              <h3 className="font-bold text-omni-ink text-lg mb-2">{s.title}</h3>
+              <p className="text-omni-ink-soft text-sm leading-relaxed">{s.body}</p>
             </div>
           ))}
         </div>
@@ -187,56 +187,56 @@ export default function LandingPage() {
       {/* Pricing */}
       <section className="px-6 py-24 max-w-5xl mx-auto w-full">
         <div className="text-center mb-14">
-          <p className="text-primary font-semibold text-sm uppercase tracking-widest mb-3">Pricing</p>
-          <h2 className="text-4xl font-bold text-text-primary">Simple, transparent pricing</h2>
-          <p className="text-text-secondary mt-4 max-w-md mx-auto">Start free for your first month. No credit card required.</p>
+          <p className="text-accent font-semibold text-sm uppercase tracking-widest mb-3">Pricing</p>
+          <h2 className="text-4xl font-bold text-omni-ink">Simple, transparent pricing</h2>
+          <p className="text-omni-ink-soft mt-4 max-w-md mx-auto">Start free for your first month. No credit card required.</p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="border border-bg-border rounded-2xl p-8 flex flex-col">
-            <p className="text-text-secondary text-xs font-semibold uppercase tracking-widest mb-4">Free trial</p>
+          <div className="border border-omni-border rounded-2xl p-8 flex flex-col">
+            <p className="text-omni-ink-soft text-xs font-semibold uppercase tracking-widest mb-4">Free trial</p>
             <div className="flex items-end gap-1 mb-2">
-              <span className="text-4xl font-extrabold text-text-primary">Free</span>
+              <span className="text-4xl font-extrabold text-omni-ink">Free</span>
             </div>
-            <p className="text-text-secondary text-sm mb-6">First month on us. No credit card needed.</p>
-            <ul className="text-sm text-text-secondary space-y-3 mb-8 flex-1">
+            <p className="text-omni-ink-soft text-sm mb-6">First month on us. No credit card needed.</p>
+            <ul className="text-sm text-omni-ink-soft space-y-3 mb-8 flex-1">
               <li className="flex items-start gap-2"><span className="text-green-500 font-bold mt-0.5">✓</span>Full access, all features</li>
               <li className="flex items-start gap-2"><span className="text-green-500 font-bold mt-0.5">✓</span>No commitment</li>
               <li className="flex items-start gap-2"><span className="text-green-500 font-bold mt-0.5">✓</span>Cancel before billing</li>
             </ul>
-            <Link href="/join" className="inline-flex items-center justify-center w-full py-3 rounded-xl border border-bg-border text-text-primary font-semibold text-sm hover:bg-bg-base transition-colors">
+            <Link href="/join" className="inline-flex items-center justify-center w-full py-3 rounded-xl border border-omni-border text-omni-ink font-semibold text-sm hover:bg-omni-bg transition-colors">
               Start free
             </Link>
           </div>
-          <div className="border border-bg-border rounded-2xl p-8 flex flex-col">
-            <p className="text-text-secondary text-xs font-semibold uppercase tracking-widest mb-4">Monthly</p>
+          <div className="border border-omni-border rounded-2xl p-8 flex flex-col">
+            <p className="text-omni-ink-soft text-xs font-semibold uppercase tracking-widest mb-4">Monthly</p>
             <div className="flex items-end gap-1 mb-2">
-              <span className="text-4xl font-extrabold text-text-primary">$10</span>
-              <span className="text-text-secondary text-sm mb-1">/month</span>
+              <span className="text-4xl font-extrabold text-omni-ink">$10</span>
+              <span className="text-omni-ink-soft text-sm mb-1">/month</span>
             </div>
-            <p className="text-text-secondary text-sm mb-6">Billed monthly. Cancel any time.</p>
-            <ul className="text-sm text-text-secondary space-y-3 mb-8 flex-1">
+            <p className="text-omni-ink-soft text-sm mb-6">Billed monthly. Cancel any time.</p>
+            <ul className="text-sm text-omni-ink-soft space-y-3 mb-8 flex-1">
               <li className="flex items-start gap-2"><span className="text-green-500 font-bold mt-0.5">✓</span>All features included</li>
               <li className="flex items-start gap-2"><span className="text-green-500 font-bold mt-0.5">✓</span>Unlimited usage</li>
               <li className="flex items-start gap-2"><span className="text-green-500 font-bold mt-0.5">✓</span>Priority support</li>
             </ul>
-            <Link href="/join" className="inline-flex items-center justify-center w-full py-3 rounded-xl bg-primary text-white font-semibold text-sm hover:bg-primary-hover transition-colors shadow-lg shadow-primary/20">
+            <Link href="/join" className="inline-flex items-center justify-center w-full py-3 rounded-xl bg-accent text-white font-semibold text-sm hover:bg-accent-hover transition-colors shadow-lg shadow-primary/20">
               Get started
             </Link>
           </div>
-          <div className="border-2 border-primary rounded-2xl p-8 flex flex-col relative">
-            <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-primary text-white text-xs font-bold px-4 py-1 rounded-full">Best value</span>
-            <p className="text-text-secondary text-xs font-semibold uppercase tracking-widest mb-4">Annual</p>
+          <div className="border-2 border-accent rounded-2xl p-8 flex flex-col relative">
+            <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-accent text-white text-xs font-bold px-4 py-1 rounded-full">Best value</span>
+            <p className="text-omni-ink-soft text-xs font-semibold uppercase tracking-widest mb-4">Annual</p>
             <div className="flex items-end gap-1 mb-2">
-              <span className="text-4xl font-extrabold text-text-primary">$100</span>
-              <span className="text-text-secondary text-sm mb-1">/year</span>
+              <span className="text-4xl font-extrabold text-omni-ink">$100</span>
+              <span className="text-omni-ink-soft text-sm mb-1">/year</span>
             </div>
-            <p className="text-text-secondary text-sm mb-6">Just $8.33/month — 2 months free.</p>
-            <ul className="text-sm text-text-secondary space-y-3 mb-8 flex-1">
+            <p className="text-omni-ink-soft text-sm mb-6">Just $8.33/month — 2 months free.</p>
+            <ul className="text-sm text-omni-ink-soft space-y-3 mb-8 flex-1">
               <li className="flex items-start gap-2"><span className="text-green-500 font-bold mt-0.5">✓</span>Everything in Monthly</li>
               <li className="flex items-start gap-2"><span className="text-green-500 font-bold mt-0.5">✓</span>2 months free</li>
               <li className="flex items-start gap-2"><span className="text-green-500 font-bold mt-0.5">✓</span>Annual receipt</li>
             </ul>
-            <Link href="/join" className="inline-flex items-center justify-center w-full py-3 rounded-xl bg-primary text-white font-semibold text-sm hover:bg-primary-hover transition-colors shadow-lg shadow-primary/20">
+            <Link href="/join" className="inline-flex items-center justify-center w-full py-3 rounded-xl bg-accent text-white font-semibold text-sm hover:bg-accent-hover transition-colors shadow-lg shadow-primary/20">
               Get started
             </Link>
           </div>
@@ -246,11 +246,11 @@ export default function LandingPage() {
       {/* Bottom CTA */}
       <section className="px-6 py-24 text-center">
         <div className="max-w-lg mx-auto">
-          <h2 className="text-4xl font-bold text-text-primary mb-4">Ready to join?</h2>
-          <p className="text-text-secondary mb-8">Get your code from the event host and start sharing in seconds.</p>
+          <h2 className="text-4xl font-bold text-omni-ink mb-4">Ready to join?</h2>
+          <p className="text-omni-ink-soft mb-8">Get your code from the event host and start sharing in seconds.</p>
           <Link
             href="/join"
-            className="inline-flex items-center gap-2 bg-primary hover:bg-primary-hover text-white font-semibold text-base px-8 py-3.5 rounded-xl transition-colors shadow-lg shadow-primary/20"
+            className="inline-flex items-center gap-2 bg-accent hover:bg-accent-hover text-white font-semibold text-base px-8 py-3.5 rounded-xl transition-colors shadow-lg shadow-primary/20"
           >
             Enter your room code
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -261,16 +261,16 @@ export default function LandingPage() {
       </section>
 
       {/* Footer */}
-      <footer className="px-6 py-6 border-t border-bg-border">
+      <footer className="px-6 py-6 border-t border-omni-border">
         <div className="max-w-6xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <div className="w-6 h-6 bg-primary rounded-md flex items-center justify-center">
+            <div className="w-6 h-6 bg-accent rounded-md flex items-center justify-center">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src="/icon.png" alt="" className="w-4 h-4 rounded" />
             </div>
-            <span className="text-sm font-semibold text-text-secondary">OMNI Share</span>
+            <span className="text-sm font-semibold text-omni-ink-soft">OMNI Share</span>
           </div>
-          <p className="text-text-tertiary text-sm">© {new Date().getFullYear()} OMNI Share. All rights reserved.</p>
+          <p className="text-omni-ink-faint text-sm">© {new Date().getFullYear()} OMNI Share. All rights reserved.</p>
         </div>
       </footer>
     </div>

@@ -6,7 +6,10 @@ import { NewPhotoToast } from '@/components/wall/NewPhotoToast'
 import { usePhotoWall } from '@/hooks/usePhotoWall'
 import type { Room, Photo, WallColors, SocialLink } from '@/types'
 
-const DEFAULT_COLORS: WallColors = { bg: '#000000', text: '#FFFFFF', accent: '#2563EB' }
+// The wall's own colors are a room owner's customization (set in Settings),
+// not the OMNI/Share brand — this default is only shown before they pick
+// their own, same reasoning as a merchant's customizable page accent.
+const DEFAULT_COLORS: WallColors = { bg: '#000000', text: '#FFFFFF', accent: '#2563EB' } // omni-drift-ignore
 
 interface WallDisplayProps {
   room: Room
@@ -55,7 +58,7 @@ function WallContent({ room, initialPhotos }: WallDisplayProps) {
           <button
             onClick={() => setSlideshowActive(true)}
             className="inline-flex items-center gap-2 px-4 py-2 rounded-lg font-medium text-sm transition-opacity hover:opacity-80"
-            style={{ background: colors.accent, color: '#fff' }}
+            style={{ background: colors.accent, color: '#fff' }} // omni-drift-ignore — pairs with the room's own customizable accent, not the OMNI brand
           >
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
