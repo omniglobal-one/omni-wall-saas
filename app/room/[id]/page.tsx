@@ -1,8 +1,7 @@
 import { redirect, notFound } from 'next/navigation'
 import { cookies } from 'next/headers'
 import { createServerSupabaseClient, createServiceRoleClient } from '@/lib/supabase/server'
-import { DashboardShell } from '@/components/dashboard/DashboardShell'
-import { Sidebar } from '@/components/layout/Sidebar'
+import { ShareShell } from '@/components/layout/ShareShell'
 import { Topbar } from '@/components/dashboard/Topbar'
 import { RoomTabs } from './RoomTabs'
 import { WallGate } from '@/components/wall/WallGate'
@@ -64,13 +63,11 @@ export default async function RoomPage({ params }: { params: Promise<{ id: strin
 
   return (
     <WallGate roomId={room.id} roomName={room.name} bypass={bypassGate}>
-      <DashboardShell sidebar={
-        <Sidebar
-          role={(profile as Profile).role}
-          userEmail={user.email ?? 'Guest'}
-          userName={(profile as Profile).full_name ?? 'Guest'}
-        />
-      }>
+      <ShareShell
+        role={(profile as Profile).role}
+        userEmail={user.email ?? 'Guest'}
+        userName={(profile as Profile).full_name ?? 'Guest'}
+      >
         <Topbar
           title={room.name}
           subtitle={room.description ?? undefined}
@@ -93,7 +90,7 @@ export default async function RoomPage({ params }: { params: Promise<{ id: strin
           approvedPhotos={(approvedPhotos ?? []) as Photo[]}
           myPhotos={(myPhotos ?? []) as Photo[]}
         />
-      </DashboardShell>
+      </ShareShell>
     </WallGate>
   )
 }

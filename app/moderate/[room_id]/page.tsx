@@ -1,7 +1,6 @@
 import { redirect, notFound } from 'next/navigation'
 import { createServerSupabaseClient, createServiceRoleClient } from '@/lib/supabase/server'
-import { DashboardShell } from '@/components/dashboard/DashboardShell'
-import { Sidebar } from '@/components/layout/Sidebar'
+import { ShareShell } from '@/components/layout/ShareShell'
 import { Topbar } from '@/components/dashboard/Topbar'
 import { ModerationClient } from './ModerationClient'
 import type { Profile, Room, Photo } from '@/types'
@@ -44,13 +43,11 @@ export default async function ModeratePage({ params }: { params: Promise<{ room_
   }
 
   return (
-    <DashboardShell sidebar={
-      <Sidebar
-        role={role}
-        userEmail={user.email ?? ''}
-        userName={(profile as Profile).full_name}
-      />
-    }>
+    <ShareShell
+      role={role}
+      userEmail={user.email ?? ''}
+      userName={(profile as Profile).full_name}
+    >
       <Topbar
         title="Moderate"
         subtitle={`${room.name} — ${(pendingPhotos ?? []).length} pending`}
@@ -61,6 +58,6 @@ export default async function ModeratePage({ params }: { params: Promise<{ room_
           initialQueue={(pendingPhotos ?? []) as Photo[]}
         />
       </div>
-    </DashboardShell>
+    </ShareShell>
   )
 }

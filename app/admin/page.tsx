@@ -1,7 +1,6 @@
 import { redirect } from 'next/navigation'
 import { createServerSupabaseClient, createServiceRoleClient } from '@/lib/supabase/server'
-import { DashboardShell } from '@/components/dashboard/DashboardShell'
-import { Sidebar } from '@/components/layout/Sidebar'
+import { ShareShell } from '@/components/layout/ShareShell'
 import { Topbar } from '@/components/dashboard/Topbar'
 import { AdminTabs } from './AdminTabs'
 import type { Profile, Room, AuditLog } from '@/types'
@@ -24,13 +23,11 @@ export default async function AdminPage() {
   ])
 
   return (
-    <DashboardShell sidebar={
-      <Sidebar
-        role={(profile as Profile).role}
-        userEmail={user.email ?? ''}
-        userName={(profile as Profile).full_name}
-      />
-    }>
+    <ShareShell
+      role={(profile as Profile).role}
+      userEmail={user.email ?? ''}
+      userName={(profile as Profile).full_name}
+    >
       <Topbar title="Admin Dashboard" subtitle="Manage users, rooms, and audit logs" />
       <AdminTabs
         users={(users ?? []) as Profile[]}
@@ -38,6 +35,6 @@ export default async function AdminPage() {
         auditLogs={(auditLogs ?? []) as AuditLog[]}
         currentUserId={user.id}
       />
-    </DashboardShell>
+    </ShareShell>
   )
 }

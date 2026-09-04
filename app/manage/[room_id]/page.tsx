@@ -1,37 +1,13 @@
+import Link from 'next/link'
 import { redirect, notFound } from 'next/navigation'
 import { createServerSupabaseClient, createServiceRoleClient } from '@/lib/supabase/server'
-import { DashboardShell } from '@/components/dashboard/DashboardShell'
-import { Sidebar } from '@/components/layout/Sidebar'
+import { ShareShell } from '@/components/layout/ShareShell'
 import { Topbar } from '@/components/dashboard/Topbar'
 import { ManageTabs } from './ManageTabs'
 import { Badge } from '@/components/ui/Badge'
 import type { Profile, Room, Photo, AuditLog } from '@/types'
 
 type ManageTab = 'overview' | 'photos' | 'moderators' | 'settings'
-
-const subNavIcons = {
-  overview: (
-    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zm10 0a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zm10 0a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
-    </svg>
-  ),
-  photos: (
-    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-    </svg>
-  ),
-  moderators: (
-    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
-    </svg>
-  ),
-  settings: (
-    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-    </svg>
-  ),
-}
 
 export default async function ManageRoomPage({
   params,
@@ -83,27 +59,37 @@ export default async function ManageRoomPage({
   const baseUrl = `/manage/${room_id}`
   const appUrl = process.env['NEXT_PUBLIC_APP_URL'] ?? 'http://localhost:3000'
 
-  const subNavItems = [
-    { label: 'Overview', href: baseUrl, tab: 'overview', icon: subNavIcons.overview },
-    { label: 'Photos', href: `${baseUrl}?tab=photos`, tab: 'photos', icon: subNavIcons.photos },
-    { label: 'Moderators', href: `${baseUrl}?tab=moderators`, tab: 'moderators', icon: subNavIcons.moderators },
-    { label: 'Settings', href: `${baseUrl}?tab=settings`, tab: 'settings', icon: subNavIcons.settings },
+  // A room's own overview/photos/moderators/settings tabs — page-level
+  // content navigation (query-param-driven, so ManageTabs' SSR state and
+  // deep links both keep working), not global nav. Previously lived as a
+  // "subnav" section bolted onto the sidebar; moved here to match the doc's
+  // own separation between persistent nav and a page's own tabs.
+  const tabLinks: { label: string; href: string; tab: ManageTab }[] = [
+    { label: 'Overview', href: baseUrl, tab: 'overview' },
+    { label: 'Photos', href: `${baseUrl}?tab=photos`, tab: 'photos' },
+    { label: 'Moderators', href: `${baseUrl}?tab=moderators`, tab: 'moderators' },
+    { label: 'Settings', href: `${baseUrl}?tab=settings`, tab: 'settings' },
   ]
 
   return (
-    <DashboardShell sidebar={
-      <Sidebar
-        role={role}
-        userEmail={user.email ?? ''}
-        userName={(profile as Profile).full_name}
-        subNavLabel={room.name}
-        subNavItems={subNavItems}
-      />
-    }>
+    <ShareShell role={role} userEmail={user.email ?? ''} userName={(profile as Profile).full_name}>
       <Topbar
         title={room.name}
-        subtitle={<><span className="text-text-secondary text-sm">Room management</span><Badge variant={room.status as 'active' | 'archived'} /></>}
+        subtitle={<><span>Room management</span><Badge variant={room.status as 'active' | 'archived'} /></>}
       />
+      <div className="flex gap-6 overflow-x-auto border-b border-omni-border px-4 sm:px-8">
+        {tabLinks.map((t) => (
+          <Link
+            key={t.tab}
+            href={t.href}
+            className={`shrink-0 border-b-2 py-2.5 font-sans text-small font-semibold ${
+              activeTab === t.tab ? 'border-accent text-omni-ink' : 'border-transparent text-omni-ink-faint hover:text-omni-ink'
+            }`}
+          >
+            {t.label}
+          </Link>
+        ))}
+      </div>
       <ManageTabs
         room={room as Room}
         photos={(photos ?? []) as Photo[]}
@@ -116,6 +102,6 @@ export default async function ManageRoomPage({
         appUrl={appUrl}
         activeTab={activeTab}
       />
-    </DashboardShell>
+    </ShareShell>
   )
 }
