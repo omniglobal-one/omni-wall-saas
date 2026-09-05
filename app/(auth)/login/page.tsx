@@ -26,7 +26,7 @@ export default function LoginPage() {
           Don&apos;t have an account?{' '}
           <Link href="/register" className="font-medium text-omni-ink hover:underline">Create one</Link>
         </p>
-        <p className="mt-2 text-center text-small text-omni-ink-faint">OMNI Share — Real-time photo sharing platform</p>
+        <p className="mt-2 text-center text-small text-omni-ink-faint">OMNI Share — Photo Sharing Platform</p>
         <p className="mt-2 text-center text-caption text-omni-ink-faint">
           <Link href="/privacy" className="hover:underline">Privacy Policy &amp; Terms of Use</Link>
         </p>
