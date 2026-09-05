@@ -77,7 +77,7 @@ export function JoinClient({ initialAuthed }: { initialAuthed: boolean }) {
           <img src="/icon.png" alt="" className="h-9 w-9 rounded-lg" />
         </div>
 
-        <h1 className="mb-2 font-display text-display font-semibold text-omni-ink">Join a room</h1>
+        <h1 className="mb-2 font-display text-h1 font-semibold text-omni-ink">Join a room</h1>
         <p className="mb-8 text-body text-omni-ink-soft">
           Enter the 6-character code shown at the event.
         </p>
