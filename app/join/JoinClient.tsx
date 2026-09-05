@@ -70,22 +70,19 @@ export function JoinClient({ initialAuthed }: { initialAuthed: boolean }) {
   }
 
   return (
-    <div className="min-h-screen bg-omni-bg flex items-center justify-center px-4">
-      <div className="w-full max-w-md text-center">
-        <div className="inline-flex items-center gap-2 mb-10 justify-center">
-          <div className="w-8 h-8 bg-accent rounded-lg flex items-center justify-center">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/icon.png" alt="" className="w-6 h-6 rounded" />
-          </div>
-          <span className="text-xl font-bold text-omni-ink">OMNI Share</span>
+    <div className="flex min-h-screen items-center justify-center bg-[radial-gradient(ellipse_80%_60%_at_50%_0%,_rgb(var(--omni-accent)/0.12),_transparent_70%)] bg-omni-bg px-4">
+      <div className="w-full max-w-md animate-omni-fade-up text-center">
+        <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-[18px] border-2 border-accent/25 bg-accent/10 shadow-[0_12px_30px_-12px_rgb(var(--omni-accent)/0.5)]">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/icon.png" alt="" className="h-9 w-9 rounded-lg" />
         </div>
 
-        <h1 className="text-3xl font-bold text-omni-ink mb-2">Join a room</h1>
-        <p className="text-omni-ink-soft mb-8">
+        <h1 className="mb-2 font-display text-display font-semibold text-omni-ink">Join a room</h1>
+        <p className="mb-8 text-body text-omni-ink-soft">
           Enter the 6-character code shown at the event.
         </p>
 
-        <div className="card p-8 text-left">
+        <div className="rounded-[20px] border border-omni-border bg-omni-surface p-8 text-left shadow-md">
           {error !== null && <Alert tone="error" className="mb-6">{error}</Alert>}
 
           <div className="mb-4">
