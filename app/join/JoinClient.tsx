@@ -1,7 +1,9 @@
 'use client'
 import React, { useState, useEffect, useRef } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
-import { Alert, Button, Input } from '@omni/ui'
+import { Alert } from '@/components/ui/Alert'
+import { Button } from '@/components/ui/Button'
+import { Input } from '@/components/ui/Input'
 import { joinRoom, guestJoinRoom } from '@/app/actions/members'
 
 export function JoinClient({ initialAuthed }: { initialAuthed: boolean }) {
@@ -70,9 +72,9 @@ export function JoinClient({ initialAuthed }: { initialAuthed: boolean }) {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-[radial-gradient(ellipse_80%_60%_at_50%_0%,_rgb(var(--omni-accent)/0.12),_transparent_70%)] bg-omni-bg px-4">
-      <div className="w-full max-w-md animate-omni-fade-up text-center">
-        <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-[18px] border-2 border-accent/25 bg-accent/10 shadow-[0_12px_30px_-12px_rgb(var(--omni-accent)/0.5)]">
+    <div className="flex min-h-screen items-center justify-center bg-[radial-gradient(ellipse_80%_60%_at_50%_0%,hsl(var(--primary)/0.12),transparent_70%)] bg-omni-bg px-4">
+      <div className="w-full max-w-md text-center">
+        <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-[18px] border-2 border-accent/25 bg-accent/10 shadow-[0_12px_30px_-12px_hsl(var(--primary)/0.5)]">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/icon.png" alt="" className="h-9 w-9 rounded-lg" />
         </div>

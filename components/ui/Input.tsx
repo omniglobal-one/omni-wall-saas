@@ -5,21 +5,16 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   error?: string
 }
 
-export function Input({ label, error, id, className = '', ...props }: InputProps) {
+export const Input = React.forwardRef<HTMLInputElement, InputProps>(function Input(
+  { label, error, id, className = '', ...props },
+  ref
+) {
   const inputId = id ?? label?.toLowerCase().replace(/\s+/g, '-')
   return (
     <div>
-      {label && (
-        <label htmlFor={inputId} className="label">{label}</label>
-      )}
-      <input
-        id={inputId}
-        className={`input ${error ? 'border-danger' : ''} ${className}`}
-        {...props}
-      />
-      {error && (
-        <p className="text-danger text-xs mt-1">{error}</p>
-      )}
+      {label && <label htmlFor={inputId} className="label">{label}</label>}
+      <input ref={ref} id={inputId} className={`input ${error ? 'border-danger' : ''} ${className}`} {...props} />
+      {error && <p className="mt-1 text-xs text-danger">{error}</p>}
     </div>
   )
-}
+})

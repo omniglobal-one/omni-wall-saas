@@ -1,6 +1,7 @@
 'use client'
 import React, { useEffect, useCallback, useState } from 'react'
 import { createPortal } from 'react-dom'
+import { X, ChevronLeft, ChevronRight, Check, Trash2, Loader2 } from 'lucide-react'
 import type { Photo } from '@/types'
 
 interface PhotoLightboxProps {
@@ -83,9 +84,7 @@ export function PhotoLightbox({ photos, initialIndex, onClose, onModerate, onDel
             className="p-1.5 rounded-lg text-white/60 hover:text-white hover:bg-white/10 transition-colors"
             aria-label="Close"
           >
-            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-            </svg>
+            <X className="h-5 w-5" />
           </button>
         </div>
       </div>
@@ -99,9 +98,7 @@ export function PhotoLightbox({ photos, initialIndex, onClose, onModerate, onDel
           className="absolute left-2 p-2 rounded-full text-white/60 hover:text-white hover:bg-white/10 transition-colors disabled:opacity-20 disabled:cursor-not-allowed"
           aria-label="Previous"
         >
-          <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-          </svg>
+          <ChevronLeft className="h-7 w-7" />
         </button>
 
         {/* Image */}
@@ -123,9 +120,7 @@ export function PhotoLightbox({ photos, initialIndex, onClose, onModerate, onDel
           className="absolute right-2 p-2 rounded-full text-white/60 hover:text-white hover:bg-white/10 transition-colors disabled:opacity-20 disabled:cursor-not-allowed"
           aria-label="Next"
         >
-          <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-          </svg>
+          <ChevronRight className="h-7 w-7" />
         </button>
       </div>
 
@@ -138,9 +133,9 @@ export function PhotoLightbox({ photos, initialIndex, onClose, onModerate, onDel
             className="inline-flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white text-sm font-medium px-5 py-2.5 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {acting === 'approve' ? (
-              <><div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />Approving…</>
+              <><Loader2 className="h-4 w-4 animate-spin" />Approving…</>
             ) : (
-              <><svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>Approve</>
+              <><Check className="h-4 w-4" />Approve</>
             )}
           </button>
         )}
@@ -151,9 +146,9 @@ export function PhotoLightbox({ photos, initialIndex, onClose, onModerate, onDel
             className="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white text-sm font-medium px-5 py-2.5 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {acting === 'reject' ? (
-              <><div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />Rejecting…</>
+              <><Loader2 className="h-4 w-4 animate-spin" />Rejecting…</>
             ) : (
-              <><svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>Reject</>
+              <><X className="h-4 w-4" />Reject</>
             )}
           </button>
         )}
@@ -163,9 +158,9 @@ export function PhotoLightbox({ photos, initialIndex, onClose, onModerate, onDel
           className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white/70 hover:text-white text-sm font-medium px-4 py-2.5 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {acting === 'delete' ? (
-            <><div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />Deleting…</>
+            <><Loader2 className="h-4 w-4 animate-spin" />Deleting…</>
           ) : (
-            <><svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>Delete</>
+            <><Trash2 className="h-4 w-4" />Delete</>
           )}
         </button>
       </div>

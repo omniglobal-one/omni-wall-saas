@@ -1,6 +1,7 @@
 import { redirect } from 'next/navigation'
 import Link from 'next/link'
-import { Button, EmptyState } from '@omni/ui'
+import { Button } from '@/components/ui/Button'
+import { EmptyState } from '@/components/ui/EmptyState'
 import { createServerSupabaseClient, createServiceRoleClient } from '@/lib/supabase/server'
 import { ShareShell } from '@/components/layout/ShareShell'
 import { Topbar } from '@/components/dashboard/Topbar'
@@ -72,7 +73,7 @@ export default async function RoomsPage() {
           <EmptyState
             title="No rooms yet"
             description={isManagerOrAdmin ? 'Create your first room to get started.' : 'Enter a join code to join a room.'}
-            action={
+            cta={
               isManagerOrAdmin
                 ? <Button asChild><Link href="/manage/new">Create room</Link></Button>
                 : <Button asChild><Link href="/join">Join a room</Link></Button>

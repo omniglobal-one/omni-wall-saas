@@ -1,4 +1,5 @@
 import React from 'react'
+import { Slot } from '@radix-ui/react-slot'
 
 type Variant = 'primary' | 'secondary' | 'danger' | 'success' | 'ghost'
 type Size = 'sm' | 'md' | 'lg'
@@ -6,6 +7,7 @@ type Size = 'sm' | 'md' | 'lg'
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: Variant
   size?: Size
+  asChild?: boolean
   children: React.ReactNode
 }
 
@@ -23,13 +25,11 @@ const sizeClasses: Record<Size, string> = {
   lg: 'text-base px-6 py-3',
 }
 
-export function Button({ variant = 'primary', size = 'md', className = '', children, ...props }: ButtonProps) {
+export function Button({ variant = 'primary', size = 'md', asChild = false, className = '', children, ...props }: ButtonProps) {
+  const Comp = asChild ? Slot : 'button'
   return (
-    <button
-      className={`${variantClasses[variant]} ${sizeClasses[size]} ${className}`}
-      {...props}
-    >
+    <Comp className={`${variantClasses[variant]} ${sizeClasses[size]} ${className}`} {...props}>
       {children}
-    </button>
+    </Comp>
   )
 }

@@ -1,278 +1,285 @@
 import Link from 'next/link'
+import Image from 'next/image'
+import {
+  QrCode,
+  MonitorPlay,
+  Lightning,
+  ShieldCheck,
+  DeviceTabletCamera,
+  ArrowRight,
+  CheckCircle,
+  Image as ImageIcon,
+} from '@phosphor-icons/react/dist/ssr'
+import type { Icon as PhosphorIcon } from '@phosphor-icons/react'
+import { Button } from '@/components/ui/Button'
+import { Badge } from '@/components/ui/status-badge'
 
 export default function LandingPage() {
   return (
-    <div className="min-h-screen bg-white flex flex-col overflow-x-hidden">
+    <div className="flex min-h-[100dvh] flex-col bg-background">
+      <SiteHeader />
+      <main className="flex-1">
+        <Hero />
+        <TrustStrip />
+        <HowItWorks />
+        <FeatureStrip />
+        <Pricing />
+        <ClosingCta />
+      </main>
+      <SiteFooter />
+    </div>
+  )
+}
 
-      {/* Navbar */}
-      <header className="relative z-10 px-6 py-5 flex items-center justify-center max-w-6xl mx-auto w-full">
-        <div className="flex items-center gap-2.5">
-          <div className="w-8 h-8 bg-accent rounded-lg flex items-center justify-center shadow-sm">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/icon.png" alt="" className="w-6 h-6 rounded" />
-          </div>
-          <span className="text-lg font-bold text-omni-ink">OMNI Share</span>
-        </div>
-      </header>
-
-      {/* Hero */}
-      <section className="relative flex flex-col items-center justify-center text-center px-6 pt-16 pb-32">
-        {/* Background gradient blobs */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute -top-40 -left-40 w-[600px] h-[600px] bg-accent/10 rounded-full blur-3xl" />
-          <div className="absolute -top-20 -right-40 w-[500px] h-[500px] bg-blue-200/40 rounded-full blur-3xl" />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-accent/5 rounded-full blur-3xl" />
-        </div>
-
-        <div className="relative max-w-3xl mx-auto">
-          {/* Live badge */}
-          <div className="inline-flex items-center gap-2 bg-white border border-omni-border shadow-sm text-omni-ink-soft px-4 py-1.5 rounded-full text-xs font-medium mb-8">
-            <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-            Real-time • No account needed • Free to join
-          </div>
-
-          {/* Headline */}
-          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-omni-ink leading-[1.05] tracking-tight mb-10">
-            Your event,
-            <br />
-            <span className="relative inline-block">
-              <span className="relative z-10 text-accent">on the wall.</span>
-              <svg className="absolute -bottom-4 left-0 w-full" viewBox="0 0 300 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M2 8.5C60 3 120 2 150 2C180 2 240 3 298 8.5" stroke="#2563EB" strokeWidth="4" strokeLinecap="round" opacity="0.3"/>
-              </svg>
-            </span>
-          </h1>
-
-          <p className="text-xl text-omni-ink-soft leading-relaxed mb-10 max-w-xl mx-auto">
-            Guests upload photos, you approve them, everyone sees them live on a big screen. Perfect for weddings, conferences, and every moment worth sharing.
-          </p>
-
-          {/* CTAs */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-            <Link
-              href="/join"
-              className="inline-flex items-center gap-2 bg-accent hover:bg-accent-hover text-white font-semibold text-base px-8 py-3.5 rounded-xl transition-colors shadow-lg shadow-primary/25"
-            >
-              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
-              </svg>
-              Join with a code
+function SiteHeader() {
+  return (
+    <header className="sticky top-0 z-40 border-b border-border/60 bg-background/80 backdrop-blur">
+      <div className="container flex h-16 items-center justify-between">
+        <Link href="/" className="flex items-center gap-2.5">
+          <Image src="/icon.png" alt="" width={28} height={28} className="rounded-md" />
+          <span className="text-[15px] font-semibold tracking-tight">OMNI Share</span>
+        </Link>
+        <div className="flex items-center gap-3">
+          <Button asChild variant="secondary" size="sm">
+            <Link href="/login">Log in</Link>
+          </Button>
+          <Button asChild size="sm">
+            <Link href="/join">
+              Join with a code <ArrowRight weight="bold" />
             </Link>
-            <p className="text-omni-ink-faint text-sm">Enter the 6-letter code from your host</p>
+          </Button>
+        </div>
+      </div>
+    </header>
+  )
+}
+
+function Hero() {
+  return (
+    <section className="container grid gap-14 py-16 md:grid-cols-2 md:items-center md:py-24 lg:py-28">
+      <div className="max-w-xl">
+        <Badge variant="outline" className="mb-6 gap-1.5 border-primary/25 bg-primary/5 py-1 text-primary">
+          <span className="size-1.5 rounded-full bg-primary" />
+          Real-time · No account needed · Free to join
+        </Badge>
+        <h1 className="text-balance text-4xl font-semibold leading-[1.08] tracking-tight md:text-6xl">
+          Your event, <span className="text-primary">on the wall.</span>
+        </h1>
+        <p className="mt-6 text-pretty text-lg leading-relaxed text-muted-foreground">
+          Guests upload photos, you approve them, everyone sees them live on a big screen. Perfect
+          for weddings, conferences, and every moment worth sharing.
+        </p>
+        <div className="mt-9 flex flex-wrap items-center gap-3">
+          <Button asChild size="lg" className="px-6">
+            <Link href="/join">
+              Join with a code <ArrowRight weight="bold" />
+            </Link>
+          </Button>
+        </div>
+        <p className="mt-6 text-sm text-muted-foreground">Enter the 6-letter code from your host.</p>
+      </div>
+      <WallPreview />
+    </section>
+  )
+}
+
+function WallPreview() {
+  const tiles = [
+    'from-blue-400 to-blue-600',
+    'from-purple-400 to-pink-500',
+    'from-amber-400 to-orange-500',
+    'from-emerald-400 to-teal-600',
+    'from-rose-400 to-red-500',
+    'from-indigo-400 to-blue-600',
+    'from-yellow-400 to-amber-500',
+    'from-cyan-400 to-sky-600',
+  ]
+  return (
+    <div className="relative">
+      <div className="absolute -inset-x-6 -inset-y-8 -z-10 rounded-[2rem] bg-gradient-to-br from-primary/10 via-transparent to-transparent blur-2xl" />
+      <div className="overflow-hidden rounded-xl border border-border/80 bg-card shadow-[0_1px_2px_rgba(0,0,0,0.04),0_16px_40px_-12px_rgba(0,0,0,0.14)]">
+        <div className="flex items-center gap-1.5 border-b border-border/70 bg-muted/30 px-4 py-3">
+          <div className="size-3 rounded-full bg-destructive/30" />
+          <div className="size-3 rounded-full bg-warning/40" />
+          <div className="size-3 rounded-full bg-success/40" />
+          <div className="mx-4 flex h-5 flex-1 items-center rounded-md bg-muted px-3">
+            <span className="font-mono text-xs text-muted-foreground">wall.omnidesk.one/room/tech-summit/wall</span>
           </div>
         </div>
-
-        {/* Mock wall preview */}
-        <div className="relative mt-20 max-w-4xl w-full mx-auto">
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white z-10 pointer-events-none" style={{top: '60%'}} />
-          <div className="bg-white border border-omni-border rounded-2xl shadow-2xl shadow-gray-200 overflow-hidden">
-            {/* Browser chrome */}
-            <div className="flex items-center gap-1.5 px-4 py-3 border-b border-omni-border bg-omni-bg">
-              <div className="w-3 h-3 rounded-full bg-red-300" />
-              <div className="w-3 h-3 rounded-full bg-yellow-300" />
-              <div className="w-3 h-3 rounded-full bg-green-300" />
-              <div className="flex-1 mx-4 bg-omni-border rounded-md h-5 flex items-center px-3">
-                <span className="text-omni-ink-faint text-xs font-mono">wall.omnidesk.one/room/tech-summit/wall</span>
-              </div>
-            </div>
-            {/* Fake photo wall */}
-            <div className="p-4 bg-gray-950">
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-                {[
-                  { h: 'h-28', bg: 'bg-gradient-to-br from-blue-400 to-blue-600' },
-                  { h: 'h-36', bg: 'bg-gradient-to-br from-purple-400 to-pink-500' },
-                  { h: 'h-24', bg: 'bg-gradient-to-br from-amber-400 to-orange-500' },
-                  { h: 'h-32', bg: 'bg-gradient-to-br from-emerald-400 to-teal-600' },
-                  { h: 'h-32', bg: 'bg-gradient-to-br from-rose-400 to-red-500' },
-                  { h: 'h-24', bg: 'bg-gradient-to-br from-indigo-400 to-blue-600' },
-                  { h: 'h-36', bg: 'bg-gradient-to-br from-yellow-400 to-amber-500' },
-                  { h: 'h-28', bg: 'bg-gradient-to-br from-cyan-400 to-sky-600' },
-                ].map((tile, i) => (
-                  <div key={i} className={`${tile.h} ${tile.bg} rounded-lg flex items-center justify-center opacity-90`}>
-                    <svg className="w-6 h-6 text-white/60" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                    </svg>
-                  </div>
-                ))}
-              </div>
-              <div className="flex items-center justify-between mt-3 px-1">
-                <span className="text-white/40 text-xs font-medium">Tech Summit 2026 — Live Wall</span>
-                <span className="flex items-center gap-1.5 text-green-400 text-xs font-medium">
-                  <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
-                  24 guests online
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* How it works */}
-      <section className="px-6 py-24 max-w-5xl mx-auto w-full">
-        <div className="text-center mb-14">
-          <p className="text-accent font-semibold text-sm uppercase tracking-widest mb-3">How it works</p>
-          <h2 className="text-4xl font-bold text-omni-ink">Three steps, zero friction</h2>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
-          {/* connector line */}
-          <div className="hidden md:block absolute top-7 left-1/3 right-1/3 h-px bg-omni-border" />
-          {[
-            {
-              step: '01',
-              icon: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />,
-              title: 'Join with a code',
-              body: 'Your host shares a 6-character code. Enter it on your phone — no account, no app download.',
-            },
-            {
-              step: '02',
-              icon: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z M15 13a3 3 0 11-6 0 3 3 0 016 0z" />,
-              title: 'Upload your photos',
-              body: 'Take a shot or pick from your gallery. Drag and drop or tap to upload — up to 10 at once.',
-            },
-            {
-              step: '03',
-              icon: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />,
-              title: 'See it on the wall',
-              body: 'Once approved, your photo appears live on the big screen for everyone to enjoy.',
-            },
-          ].map((s, i) => (
-            <div key={i} className="flex flex-col items-center text-center">
-              <div className="relative mb-6">
-                <div className="w-14 h-14 bg-accent rounded-2xl flex items-center justify-center shadow-lg shadow-primary/20">
-                  <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">{s.icon}</svg>
-                </div>
-                <span className="absolute -top-2 -right-2 w-5 h-5 bg-white border border-omni-border rounded-full text-[10px] font-bold text-omni-ink-faint flex items-center justify-center">{i + 1}</span>
-              </div>
-              <h3 className="font-bold text-omni-ink text-lg mb-2">{s.title}</h3>
-              <p className="text-omni-ink-soft text-sm leading-relaxed">{s.body}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Features strip */}
-      <section className="bg-white px-6">
-        <div className="max-w-5xl mx-auto bg-gray-950 text-white rounded-3xl overflow-hidden border border-white/10">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-white/5">
-            {[
-              {
-                accent: 'text-blue-400',
-                icon: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />,
-                title: 'Instant, real-time',
-                body: 'Photos appear on the wall within seconds of being approved. No refreshing, no waiting.',
-              },
-              {
-                accent: 'text-amber-400',
-                icon: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />,
-                title: 'Moderated & safe',
-                body: 'Every photo goes through approval before it hits the wall. Full control for your event.',
-              },
-              {
-                accent: 'text-green-400',
-                icon: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 18h.01M8 21h8a2 2 0 002-2v-6a2 2 0 00-2-2H8a2 2 0 00-2 2v6a2 2 0 002 2zM8 3h.01M12 3h.01M16 3h.01M8 7h.01M12 7h.01M16 7h.01M8 11h.01M12 11h.01M16 11h.01" />,
-                title: 'Any screen, any room',
-                body: 'Cast to a TV, projector, or monitor. Designed for massive screens and tiny pockets alike.',
-              },
-            ].map((f, i) => (
-              <div key={i} className="bg-gray-950 px-8 py-10 flex flex-col items-center text-center">
-                <svg className={`w-6 h-6 ${f.accent} mb-5`} fill="none" viewBox="0 0 24 24" stroke="currentColor">{f.icon}</svg>
-                <h3 className="font-bold text-white text-lg mb-2">{f.title}</h3>
-                <p className="text-gray-400 text-sm leading-relaxed">{f.body}</p>
+        <div className="bg-zinc-950 p-4">
+          <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
+            {tiles.map((g, i) => (
+              <div
+                key={i}
+                className={`flex items-center justify-center rounded-lg bg-gradient-to-br opacity-90 ${g} ${
+                  i % 3 === 0 ? 'h-28' : i % 3 === 1 ? 'h-36' : 'h-24'
+                }`}
+              >
+                <ImageIcon className="size-6 text-white/60" weight="thin" />
               </div>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* Pricing */}
-      <section className="px-6 py-24 max-w-5xl mx-auto w-full">
-        <div className="text-center mb-14">
-          <p className="text-accent font-semibold text-sm uppercase tracking-widest mb-3">Pricing</p>
-          <h2 className="text-4xl font-bold text-omni-ink">Simple, transparent pricing</h2>
-          <p className="text-omni-ink-soft mt-4 max-w-md mx-auto">Start free for your first month. No credit card required.</p>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="border border-omni-border rounded-2xl p-8 flex flex-col">
-            <p className="text-omni-ink-soft text-xs font-semibold uppercase tracking-widest mb-4">Free trial</p>
-            <div className="flex items-end gap-1 mb-2">
-              <span className="text-4xl font-extrabold text-omni-ink">Free</span>
-            </div>
-            <p className="text-omni-ink-soft text-sm mb-6">First month on us. No credit card needed.</p>
-            <ul className="text-sm text-omni-ink-soft space-y-3 mb-8 flex-1">
-              <li className="flex items-start gap-2"><span className="text-green-500 font-bold mt-0.5">✓</span>Full access, all features</li>
-              <li className="flex items-start gap-2"><span className="text-green-500 font-bold mt-0.5">✓</span>No commitment</li>
-              <li className="flex items-start gap-2"><span className="text-green-500 font-bold mt-0.5">✓</span>Cancel before billing</li>
-            </ul>
-            <Link href="/join" className="inline-flex items-center justify-center w-full py-3 rounded-xl border border-omni-border text-omni-ink font-semibold text-sm hover:bg-omni-bg transition-colors">
-              Start free
-            </Link>
-          </div>
-          <div className="border border-omni-border rounded-2xl p-8 flex flex-col">
-            <p className="text-omni-ink-soft text-xs font-semibold uppercase tracking-widest mb-4">Monthly</p>
-            <div className="flex items-end gap-1 mb-2">
-              <span className="text-4xl font-extrabold text-omni-ink">$10</span>
-              <span className="text-omni-ink-soft text-sm mb-1">/month</span>
-            </div>
-            <p className="text-omni-ink-soft text-sm mb-6">Billed monthly. Cancel any time.</p>
-            <ul className="text-sm text-omni-ink-soft space-y-3 mb-8 flex-1">
-              <li className="flex items-start gap-2"><span className="text-green-500 font-bold mt-0.5">✓</span>All features included</li>
-              <li className="flex items-start gap-2"><span className="text-green-500 font-bold mt-0.5">✓</span>Unlimited usage</li>
-              <li className="flex items-start gap-2"><span className="text-green-500 font-bold mt-0.5">✓</span>Priority support</li>
-            </ul>
-            <Link href="/join" className="inline-flex items-center justify-center w-full py-3 rounded-xl bg-accent text-white font-semibold text-sm hover:bg-accent-hover transition-colors shadow-lg shadow-primary/20">
-              Get started
-            </Link>
-          </div>
-          <div className="border-2 border-accent rounded-2xl p-8 flex flex-col relative">
-            <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-accent text-white text-xs font-bold px-4 py-1 rounded-full">Best value</span>
-            <p className="text-omni-ink-soft text-xs font-semibold uppercase tracking-widest mb-4">Annual</p>
-            <div className="flex items-end gap-1 mb-2">
-              <span className="text-4xl font-extrabold text-omni-ink">$100</span>
-              <span className="text-omni-ink-soft text-sm mb-1">/year</span>
-            </div>
-            <p className="text-omni-ink-soft text-sm mb-6">Just $8.33/month — 2 months free.</p>
-            <ul className="text-sm text-omni-ink-soft space-y-3 mb-8 flex-1">
-              <li className="flex items-start gap-2"><span className="text-green-500 font-bold mt-0.5">✓</span>Everything in Monthly</li>
-              <li className="flex items-start gap-2"><span className="text-green-500 font-bold mt-0.5">✓</span>2 months free</li>
-              <li className="flex items-start gap-2"><span className="text-green-500 font-bold mt-0.5">✓</span>Annual receipt</li>
-            </ul>
-            <Link href="/join" className="inline-flex items-center justify-center w-full py-3 rounded-xl bg-accent text-white font-semibold text-sm hover:bg-accent-hover transition-colors shadow-lg shadow-primary/20">
-              Get started
-            </Link>
+          <div className="mt-3 flex items-center justify-between px-1">
+            <span className="text-xs font-medium text-white/40">Tech Summit 2026 — Live Wall</span>
+            <span className="flex items-center gap-1.5 text-xs font-medium text-emerald-400">
+              <span className="size-1.5 animate-pulse rounded-full bg-emerald-400" />
+              24 guests online
+            </span>
           </div>
         </div>
-      </section>
-
-      {/* Bottom CTA */}
-      <section className="px-6 py-24 text-center">
-        <div className="max-w-lg mx-auto">
-          <h2 className="text-4xl font-bold text-omni-ink mb-4">Ready to join?</h2>
-          <p className="text-omni-ink-soft mb-8">Get your code from the event host and start sharing in seconds.</p>
-          <Link
-            href="/join"
-            className="inline-flex items-center gap-2 bg-accent hover:bg-accent-hover text-white font-semibold text-base px-8 py-3.5 rounded-xl transition-colors shadow-lg shadow-primary/20"
-          >
-            Enter your room code
-            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-            </svg>
-          </Link>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="px-6 py-6 border-t border-omni-border">
-        <div className="max-w-6xl mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <div className="w-6 h-6 bg-accent rounded-md flex items-center justify-center">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/icon.png" alt="" className="w-4 h-4 rounded" />
-            </div>
-            <span className="text-sm font-semibold text-omni-ink-soft">OMNI Share</span>
-          </div>
-          <p className="text-omni-ink-faint text-sm">© {new Date().getFullYear()} OMNI Share. All rights reserved.</p>
-        </div>
-      </footer>
+      </div>
     </div>
+  )
+}
+
+function TrustStrip() {
+  const items = [
+    { icon: QrCode, label: 'Join by code, no app needed' },
+    { icon: Lightning, label: 'Photos on the wall within seconds' },
+    { icon: ShieldCheck, label: 'Every photo moderated first' },
+    { icon: MonitorPlay, label: 'Cast to any screen' },
+  ]
+  return (
+    <section className="border-y border-border/60 bg-muted/20">
+      <div className="container grid grid-cols-2 gap-6 py-8 md:grid-cols-4 md:gap-8">
+        {items.map(({ icon: Icon, label }) => (
+          <div key={label} className="flex items-center gap-2.5 text-sm text-muted-foreground">
+            <Icon className="size-4 shrink-0 text-primary" />
+            {label}
+          </div>
+        ))}
+      </div>
+    </section>
+  )
+}
+
+function HowItWorks() {
+  const steps = [
+    { n: '01', title: 'Join with a code', description: 'Your host shares a 6-character code. Enter it on your phone — no account, no app download.' },
+    { n: '02', title: 'Upload your photos', description: 'Take a shot or pick from your gallery. Drag and drop or tap to upload — up to 10 at once.' },
+    { n: '03', title: 'See it on the wall', description: 'Once approved, your photo appears live on the big screen for everyone to enjoy.' },
+  ]
+  return (
+    <section id="workflow" className="py-20 md:py-28">
+      <div className="container">
+        <h2 className="max-w-xl text-balance text-3xl font-semibold tracking-tight md:text-4xl">
+          Three steps, zero friction.
+        </h2>
+        <div className="mt-14 grid gap-10 md:grid-cols-3 md:gap-8">
+          {steps.map((s) => (
+            <div key={s.n}>
+              <span className="text-sm font-medium text-primary">{s.n}</span>
+              <h3 className="mt-3 text-lg font-semibold tracking-tight">{s.title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{s.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function FeatureCard({ icon: Icon, title, description }: { icon: PhosphorIcon; title: string; description: string }) {
+  return (
+    <div className="flex flex-col items-center bg-foreground px-8 py-10 text-center">
+      <div className="mb-4 flex size-9 items-center justify-center rounded-lg bg-background/10 text-background">
+        <Icon className="size-[18px]" weight="duotone" />
+      </div>
+      <h3 className="mb-2 text-lg font-bold text-background">{title}</h3>
+      <p className="text-sm leading-relaxed text-background/60">{description}</p>
+    </div>
+  )
+}
+
+function FeatureStrip() {
+  return (
+    <section className="border-t border-border/60 bg-muted/20 px-6 py-20 md:py-28">
+      <div className="mx-auto max-w-5xl overflow-hidden rounded-3xl border border-border/10 bg-foreground">
+        <div className="grid grid-cols-1 gap-px bg-background/10 md:grid-cols-3">
+          <FeatureCard icon={Lightning} title="Instant, real-time" description="Photos appear on the wall within seconds of being approved. No refreshing, no waiting." />
+          <FeatureCard icon={ShieldCheck} title="Moderated & safe" description="Every photo goes through approval before it hits the wall. Full control for your event." />
+          <FeatureCard icon={DeviceTabletCamera} title="Any screen, any room" description="Cast to a TV, projector, or monitor. Designed for massive screens and tiny pockets alike." />
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function Pricing() {
+  const tiers = [
+    { name: 'Free trial', price: 'Free', period: 'first month', features: ['Full access, all features', 'No commitment', 'Cancel before billing'], cta: 'Start free', variant: 'secondary' as const },
+    { name: 'Monthly', price: '$10', period: '/month', features: ['All features included', 'Unlimited usage', 'Priority support'], cta: 'Get started', variant: 'primary' as const },
+    { name: 'Annual', price: '$100', period: '/year', features: ['Everything in Monthly', '2 months free', 'Annual receipt'], cta: 'Get started', variant: 'primary' as const, badge: 'Best value' },
+  ]
+  return (
+    <section id="pricing" className="container py-20 md:py-28">
+      <div className="text-center">
+        <h2 className="text-balance text-3xl font-semibold tracking-tight md:text-4xl">Simple, transparent pricing</h2>
+        <p className="mx-auto mt-4 max-w-md text-pretty text-muted-foreground">Start free for your first month. No credit card required.</p>
+      </div>
+      <div className="mt-12 grid gap-6 md:grid-cols-3">
+        {tiers.map((t) => (
+          <div key={t.name} className={`relative flex flex-col rounded-xl border p-8 ${t.badge ? 'border-2 border-primary' : 'border-border/80'}`}>
+            {t.badge && (
+              <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 rounded-full bg-primary px-4 py-1 text-xs font-semibold text-primary-foreground">
+                {t.badge}
+              </span>
+            )}
+            <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">{t.name}</p>
+            <div className="mb-2 mt-4 flex items-end gap-1">
+              <span className="text-4xl font-semibold tracking-tight">{t.price}</span>
+              <span className="mb-1 text-sm text-muted-foreground">{t.period}</span>
+            </div>
+            <ul className="mb-8 mt-4 flex-1 space-y-3 text-sm text-muted-foreground">
+              {t.features.map((f) => (
+                <li key={f} className="flex items-start gap-2">
+                  <CheckCircle weight="fill" className="mt-0.5 size-4 shrink-0 text-success" />
+                  {f}
+                </li>
+              ))}
+            </ul>
+            <Button asChild variant={t.variant} className="w-full justify-center">
+              <Link href="/join">{t.cta}</Link>
+            </Button>
+          </div>
+        ))}
+      </div>
+    </section>
+  )
+}
+
+function ClosingCta() {
+  return (
+    <section className="container pb-20 md:pb-28">
+      <div className="relative overflow-hidden rounded-2xl border border-border/80 bg-foreground px-8 py-16 text-center text-background md:px-16">
+        <div className="pointer-events-none absolute -right-24 -top-24 size-72 rounded-full bg-primary/25 blur-3xl" />
+        <div className="pointer-events-none absolute -bottom-24 -left-24 size-72 rounded-full bg-primary/20 blur-3xl" />
+        <div className="relative">
+          <h2 className="text-balance text-3xl font-semibold tracking-tight md:text-4xl">Ready to join?</h2>
+          <p className="mx-auto mt-4 max-w-lg text-pretty text-background/70">
+            Get your code from the event host and start sharing in seconds.
+          </p>
+          <Button asChild size="lg" className="mt-8 justify-center bg-background px-6 !text-foreground hover:bg-background/90">
+            <Link href="/join">
+              Enter your room code <ArrowRight weight="bold" />
+            </Link>
+          </Button>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function SiteFooter() {
+  return (
+    <footer className="border-t border-border/60 py-6">
+      <div className="container flex items-center justify-between text-sm text-muted-foreground">
+        <div className="flex items-center gap-2">
+          <Image src="/icon.png" alt="" width={18} height={18} className="rounded" />
+          <span>OMNI Share</span>
+        </div>
+        <p>&copy; {new Date().getFullYear()} OMNI Share. All rights reserved.</p>
+      </div>
+    </footer>
   )
 }

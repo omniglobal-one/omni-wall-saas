@@ -2,7 +2,9 @@
 import { useState } from 'react'
 import type { FormEvent } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
-import { Button, Input, Alert } from '@omni/ui'
+import { Button } from '@/components/ui/Button'
+import { Input } from '@/components/ui/Input'
+import { Alert } from '@/components/ui/Alert'
 import { signIn } from '@/app/actions/auth'
 
 export function LoginClient() {

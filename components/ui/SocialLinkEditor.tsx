@@ -1,5 +1,6 @@
 'use client'
 import { useState } from 'react'
+import { ArrowUp, ArrowDown, X, Plus } from 'lucide-react'
 import type { SocialLink } from '@/types'
 
 const PLATFORMS = [
@@ -52,25 +53,25 @@ export function SocialLinkEditor({ links, onChange }: SocialLinkEditorProps) {
   return (
     <div className="flex flex-col gap-3">
       {links.length > 0 && (
-        <div className="card overflow-hidden divide-y divide-bg-border">
+        <div className="card divide-y divide-border overflow-hidden">
           {links.map((link, index) => (
             <div key={index} className="flex items-center gap-3 px-4 py-3">
-              <div className="flex-1 min-w-0">
-                <p className="text-sm font-medium text-text-primary truncate">{link.label}</p>
-                <p className="text-xs text-text-tertiary truncate">{link.platform} · {link.url}</p>
+              <div className="min-w-0 flex-1">
+                <p className="truncate text-sm font-medium text-text-primary">{link.label}</p>
+                <p className="truncate text-xs text-text-tertiary">{link.platform} · {link.url}</p>
               </div>
-              <div className="flex items-center gap-1 flex-shrink-0">
+              <div className="flex flex-shrink-0 items-center gap-1">
                 <button type="button" onClick={() => moveLink(index, -1)} disabled={index === 0}
-                  className="w-7 h-7 flex items-center justify-center rounded text-text-tertiary hover:text-text-primary hover:bg-bg-border disabled:opacity-30 transition-colors">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+                  className="flex h-7 w-7 items-center justify-center rounded text-text-tertiary transition-colors hover:bg-bg-border hover:text-text-primary disabled:opacity-30">
+                  <ArrowUp className="h-3.5 w-3.5" />
                 </button>
                 <button type="button" onClick={() => moveLink(index, 1)} disabled={index === links.length - 1}
-                  className="w-7 h-7 flex items-center justify-center rounded text-text-tertiary hover:text-text-primary hover:bg-bg-border disabled:opacity-30 transition-colors">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                  className="flex h-7 w-7 items-center justify-center rounded text-text-tertiary transition-colors hover:bg-bg-border hover:text-text-primary disabled:opacity-30">
+                  <ArrowDown className="h-3.5 w-3.5" />
                 </button>
                 <button type="button" onClick={() => removeLink(index)}
-                  className="w-7 h-7 flex items-center justify-center rounded text-text-tertiary hover:text-danger hover:bg-danger/10 transition-colors ml-1">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                  className="ml-1 flex h-7 w-7 items-center justify-center rounded text-text-tertiary transition-colors hover:bg-danger/10 hover:text-danger">
+                  <X className="h-3.5 w-3.5" />
                 </button>
               </div>
             </div>
@@ -84,7 +85,7 @@ export function SocialLinkEditor({ links, onChange }: SocialLinkEditorProps) {
 
       {links.length < 20 && (
         showAdd ? (
-          <div className="card p-4 flex flex-col gap-3">
+          <div className="card flex flex-col gap-3 p-4">
             <select value={newLink.platform} onChange={e => setNewLink(f => ({ ...f, platform: e.target.value }))} className="input text-sm">
               {PLATFORMS.map(p => <option key={p} value={p}>{p}</option>)}
             </select>
@@ -98,8 +99,8 @@ export function SocialLinkEditor({ links, onChange }: SocialLinkEditorProps) {
             </div>
           </div>
         ) : (
-          <button type="button" onClick={() => setShowAdd(true)} className="btn-secondary text-sm w-full justify-center">
-            + Add Link
+          <button type="button" onClick={() => setShowAdd(true)} className="btn-secondary w-full justify-center text-sm">
+            <Plus className="h-4 w-4" /> Add Link
           </button>
         )
       )}

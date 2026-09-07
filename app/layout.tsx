@@ -1,9 +1,13 @@
 import type { Metadata } from 'next'
 import type { ReactNode } from 'react'
-import { accentTokensToCssVars, PRODUCTS } from '@omni/tokens'
+import { Geist, Geist_Mono } from 'next/font/google'
 import { CookieConsent } from '@/components/CookieConsent'
 import { RegisterSW } from '@/components/RegisterSW'
+import { Toaster } from '@/components/ui/sonner'
 import './globals.css'
+
+const geistSans = Geist({ subsets: ['latin'], variable: '--font-sans' })
+const geistMono = Geist_Mono({ subsets: ['latin'], variable: '--font-mono' })
 
 export const metadata: Metadata = {
   title: 'OMNI Share',
@@ -23,14 +27,12 @@ export const dynamic = 'force-dynamic'
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <head>
-        <style dangerouslySetInnerHTML={{ __html: accentTokensToCssVars(PRODUCTS.share) }} />
-      </head>
-      <body suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning className={`${geistSans.variable} ${geistMono.variable}`}>
+      <body suppressHydrationWarning className="font-sans antialiased">
         {children}
         <CookieConsent />
         <RegisterSW />
+        <Toaster position="top-right" richColors />
       </body>
     </html>
   )
