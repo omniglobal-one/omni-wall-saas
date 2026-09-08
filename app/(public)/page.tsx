@@ -5,7 +5,6 @@ import {
   MonitorPlay,
   Lightning,
   ShieldCheck,
-  DeviceTabletCamera,
   ArrowRight,
   CheckCircle,
   Image as ImageIcon,
@@ -21,8 +20,8 @@ export default function LandingPage() {
       <main className="flex-1">
         <Hero />
         <TrustStrip />
+        <FeatureGrid />
         <HowItWorks />
-        <FeatureStrip />
         <Pricing />
         <ClosingCta />
       </main>
@@ -179,29 +178,82 @@ function HowItWorks() {
   )
 }
 
-function FeatureCard({ icon: Icon, title, description }: { icon: PhosphorIcon; title: string; description: string }) {
+function FeatureGrid() {
   return (
-    <div className="flex flex-col items-center bg-foreground px-8 py-10 text-center">
-      <div className="mb-4 flex size-9 items-center justify-center rounded-lg bg-background/10 text-background">
-        <Icon className="size-[18px]" weight="duotone" />
+    <section id="platform" className="container py-20 md:py-28">
+      <div className="max-w-2xl">
+        <h2 className="text-balance text-3xl font-semibold tracking-tight md:text-4xl">
+          Built for the moment, not just the memory.
+        </h2>
+        <p className="mt-4 text-pretty text-muted-foreground">
+          A guest sees their own photo on the big screen minutes after taking it — not buried in
+          an album days later.
+        </p>
       </div>
-      <h3 className="mb-2 text-lg font-bold text-background">{title}</h3>
-      <p className="text-sm leading-relaxed text-background/60">{description}</p>
-    </div>
+      <div className="mt-12 grid gap-4 md:grid-cols-6 md:grid-rows-2">
+        <FeatureCard
+          className="md:col-span-4 md:row-span-1"
+          icon={QrCode}
+          title="Join with a code, upload in seconds"
+          description="Your host shares a 6-character code. Guests upload straight from their phone — no app to install, no account to create."
+        />
+        <FeatureCard
+          className="md:col-span-2 md:row-span-2"
+          icon={MonitorPlay}
+          title="Cast to any screen in the room"
+          description="A TV, a projector, a monitor — the wall is built for a massive screen at a conference and works just as well on a laptop for a small gathering."
+        />
+        <FeatureCard
+          className="md:col-span-2 md:row-span-1"
+          icon={Lightning}
+          title="Live within seconds"
+          description="Approved photos appear on the wall the moment they're approved — no refreshing, no waiting."
+        />
+        <FeatureCard
+          className="md:col-span-2 md:row-span-1"
+          icon={ShieldCheck}
+          title="Every photo moderated first"
+          description="Nothing hits the wall without your approval — full control over what the room sees."
+        />
+        <FeatureCard
+          className="md:col-span-6 md:row-span-1 md:flex-row md:items-center md:gap-8"
+          icon={CheckCircle}
+          title="Every guest's photo, not just the official ones"
+          description="Weddings, conferences, launches — every moment worth sharing ends up on the wall, not scattered across a dozen camera rolls."
+          wide
+        />
+      </div>
+    </section>
   )
 }
 
-function FeatureStrip() {
+function FeatureCard({
+  icon: Icon,
+  title,
+  description,
+  className = '',
+  wide = false,
+}: {
+  icon: PhosphorIcon
+  title: string
+  description: string
+  className?: string
+  wide?: boolean
+}) {
   return (
-    <section className="border-t border-border/60 bg-muted/20 px-6 py-20 md:py-28">
-      <div className="mx-auto max-w-5xl overflow-hidden rounded-3xl border border-border/10 bg-foreground">
-        <div className="grid grid-cols-1 gap-px bg-background/10 md:grid-cols-3">
-          <FeatureCard icon={Lightning} title="Instant, real-time" description="Photos appear on the wall within seconds of being approved. No refreshing, no waiting." />
-          <FeatureCard icon={ShieldCheck} title="Moderated & safe" description="Every photo goes through approval before it hits the wall. Full control for your event." />
-          <FeatureCard icon={DeviceTabletCamera} title="Any screen, any room" description="Cast to a TV, projector, or monitor. Designed for massive screens and tiny pockets alike." />
+    <div
+      className={`group flex flex-col justify-between rounded-xl border border-border/80 bg-card p-6 transition-colors hover:border-primary/30 ${
+        wide ? 'md:flex-row' : ''
+      } ${className}`}
+    >
+      <div className={wide ? 'md:max-w-md' : ''}>
+        <div className="mb-4 flex size-9 items-center justify-center rounded-lg bg-primary/10 text-primary">
+          <Icon className="size-[18px]" weight="duotone" />
         </div>
+        <h3 className="text-base font-semibold tracking-tight">{title}</h3>
+        <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{description}</p>
       </div>
-    </section>
+    </div>
   )
 }
 
