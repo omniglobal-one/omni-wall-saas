@@ -39,6 +39,9 @@ function SiteHeader() {
           <span className="text-[15px] font-semibold tracking-tight">OMNI Share</span>
         </Link>
         <div className="flex items-center gap-3">
+          <Button asChild variant="ghost" size="sm" className="hidden sm:inline-flex">
+            <Link href="/room/d3f2d9fc-36fd-47e3-8b28-fccf43433d23/wall">See a live wall</Link>
+          </Button>
           <Button asChild variant="secondary" size="sm">
             <Link href="/login">Log in</Link>
           </Button>
@@ -73,6 +76,9 @@ function Hero() {
             <Link href="/join">
               Join with a code <ArrowRight weight="bold" />
             </Link>
+          </Button>
+          <Button asChild size="lg" variant="secondary" className="px-6">
+            <Link href="/room/d3f2d9fc-36fd-47e3-8b28-fccf43433d23/wall">See a live wall</Link>
           </Button>
         </div>
         <p className="mt-6 text-sm text-muted-foreground">Enter the 6-letter code from your host.</p>
